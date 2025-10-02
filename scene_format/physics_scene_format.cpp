@@ -740,7 +740,7 @@ std::string colorToHex(const Color& color) {
     int b = static_cast<int>(color.b * 255.0f);
     
     char hex[8];
-    sprintf(hex, "#%02x%02x%02x", r, g, b);
+    snprintf(hex, sizeof(hex), "#%02x%02x%02x", r, g, b);
     
     return std::string(hex);
 }

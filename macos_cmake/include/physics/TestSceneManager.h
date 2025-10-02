@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QTimer>
 #include <memory>
-#include "ClothSimulation.h"
+#include "physics/ClothSimulation.h"
 
 namespace Physics {
 

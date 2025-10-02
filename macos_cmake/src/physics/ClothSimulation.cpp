@@ -1,4 +1,4 @@
-#include "ClothSimulation.h"
+#include "physics/ClothSimulation.h"
 #include <cmath>
 #include <algorithm>
 #include <QDebug>
