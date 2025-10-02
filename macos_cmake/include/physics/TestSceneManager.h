@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ClothSimulation.h"
-#include <QTimer>
 #include <QObject>
+#include <QTimer>
 #include <memory>
+#include "ClothSimulation.h"
 
 namespace Physics {
 

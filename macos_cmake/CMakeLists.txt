@@ -74,7 +74,6 @@ include_directories(
 
 # 編譯定義
 add_definitions(
-    -DQT_NO_KEYWORDS
     -DQT_DEPRECATED_WARNINGS
     -DQT_DISABLE_DEPRECATED_BEFORE=0x060000
     -DAPP_VERSION="${PROJECT_VERSION}"
