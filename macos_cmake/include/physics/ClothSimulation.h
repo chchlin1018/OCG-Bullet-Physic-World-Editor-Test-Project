@@ -183,7 +183,7 @@ private:
     void setupRenderData();
     std::vector<float> m_vertices;
     std::vector<unsigned int> m_indices;
-    unsigned int m_VAO, m_VBO, m_EBO;
+    unsigned int m_VAO = 0, m_VBO = 0, m_EBO = 0;  // 初始化為 0
     bool m_renderDataDirty;
 };
 
