@@ -1,0 +1,468 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "Basic Drop Test",
+    "description": "A simple scene with falling boxes to test basic physics functionality",
+    "author": "Physics Scene Editor",
+    "created": "2025-01-02T10:00:00Z",
+    "modified": "2025-01-02T10:00:00Z",
+    "tags": ["test", "basic", "drop", "gravity"]
+  },
+  "simulationSettings": {
+    "timeStep": 0.016666667,
+    "gravity": {
+      "x": 0.0,
+      "y": -9.81,
+      "z": 0.0
+    },
+    "solverIterations": 10,
+    "useOGCContact": true,
+    "ogcContactRadius": 0.1,
+    "hybridMode": true,
+    "enableCCD": false,
+    "enableSleeping": true,
+    "sleepThreshold": 0.1,
+    "maxSubSteps": 3
+  },
+  "renderSettings": {
+    "backgroundColor": {
+      "r": 0.2,
+      "g": 0.3,
+      "b": 0.4,
+      "a": 1.0
+    },
+    "ambientLight": {
+      "r": 0.3,
+      "g": 0.3,
+      "b": 0.3
+    },
+    "enableShadows": true,
+    "enableAntiAliasing": true,
+    "shadowMapSize": 1024,
+    "exposure": 1.0,
+    "gamma": 2.2
+  },
+  "physicsMaterials": {
+    "default": {
+      "name": "Default",
+      "density": 1000.0,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "rollingFriction": 0.1,
+      "isKinematic": false,
+      "isStatic": false
+    },
+    "ground": {
+      "name": "Ground",
+      "density": 1000.0,
+      "friction": 0.8,
+      "restitution": 0.1,
+      "rollingFriction": 0.2,
+      "isKinematic": false,
+      "isStatic": true
+    },
+    "bouncy": {
+      "name": "Bouncy",
+      "density": 500.0,
+      "friction": 0.3,
+      "restitution": 0.9,
+      "rollingFriction": 0.05,
+      "isKinematic": false,
+      "isStatic": false
+    }
+  },
+  "visualMaterials": {
+    "red": {
+      "name": "Red",
+      "diffuseColor": {
+        "r": 0.8,
+        "g": 0.2,
+        "b": 0.2,
+        "a": 1.0
+      },
+      "specularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "emissiveColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "shininess": 32.0,
+      "metallic": 0.0,
+      "roughness": 0.5,
+      "transparency": 1.0,
+      "diffuseTexture": "",
+      "normalTexture": "",
+      "specularTexture": "",
+      "emissiveTexture": ""
+    },
+    "green": {
+      "name": "Green",
+      "diffuseColor": {
+        "r": 0.2,
+        "g": 0.8,
+        "b": 0.2,
+        "a": 1.0
+      },
+      "specularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "emissiveColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "shininess": 32.0,
+      "metallic": 0.0,
+      "roughness": 0.5,
+      "transparency": 1.0,
+      "diffuseTexture": "",
+      "normalTexture": "",
+      "specularTexture": "",
+      "emissiveTexture": ""
+    },
+    "blue": {
+      "name": "Blue",
+      "diffuseColor": {
+        "r": 0.2,
+        "g": 0.2,
+        "b": 0.8,
+        "a": 1.0
+      },
+      "specularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "emissiveColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "shininess": 32.0,
+      "metallic": 0.0,
+      "roughness": 0.5,
+      "transparency": 1.0,
+      "diffuseTexture": "",
+      "normalTexture": "",
+      "specularTexture": "",
+      "emissiveTexture": ""
+    },
+    "ground_material": {
+      "name": "Ground Material",
+      "diffuseColor": {
+        "r": 0.6,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      },
+      "specularColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "emissiveColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "shininess": 16.0,
+      "metallic": 0.0,
+      "roughness": 0.8,
+      "transparency": 1.0,
+      "diffuseTexture": "",
+      "normalTexture": "",
+      "specularTexture": "",
+      "emissiveTexture": ""
+    }
+  },
+  "rigidBodies": {
+    "ground": {
+      "name": "Ground",
+      "transform": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "rotation": {
+          "w": 1.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "shapeType": "plane",
+      "shapeParameters": {
+        "normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "distance": 0.0
+      },
+      "mass": 0.0,
+      "linearVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "angularVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "linearDamping": 0.0,
+      "angularDamping": 0.0,
+      "collisionGroup": 1,
+      "collisionMask": 65535,
+      "isTrigger": false,
+      "physicsMaterial": "ground",
+      "visualMaterial": "ground_material"
+    },
+    "box1": {
+      "name": "Red Box",
+      "transform": {
+        "position": {
+          "x": -2.0,
+          "y": 5.0,
+          "z": 0.0
+        },
+        "rotation": {
+          "w": 1.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "shapeType": "box",
+      "shapeParameters": {
+        "halfExtents": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "mass": 1.0,
+      "linearVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "angularVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "linearDamping": 0.1,
+      "angularDamping": 0.1,
+      "collisionGroup": 2,
+      "collisionMask": 65535,
+      "isTrigger": false,
+      "physicsMaterial": "default",
+      "visualMaterial": "red"
+    },
+    "box2": {
+      "name": "Green Box",
+      "transform": {
+        "position": {
+          "x": 0.0,
+          "y": 7.0,
+          "z": 0.0
+        },
+        "rotation": {
+          "w": 0.9659,
+          "x": 0.0,
+          "y": 0.2588,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "shapeType": "box",
+      "shapeParameters": {
+        "halfExtents": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "mass": 1.5,
+      "linearVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "angularVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "linearDamping": 0.1,
+      "angularDamping": 0.1,
+      "collisionGroup": 2,
+      "collisionMask": 65535,
+      "isTrigger": false,
+      "physicsMaterial": "default",
+      "visualMaterial": "green"
+    },
+    "sphere1": {
+      "name": "Blue Sphere",
+      "transform": {
+        "position": {
+          "x": 2.0,
+          "y": 8.0,
+          "z": 0.0
+        },
+        "rotation": {
+          "w": 1.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "shapeType": "sphere",
+      "shapeParameters": {
+        "radius": 0.5
+      },
+      "mass": 0.8,
+      "linearVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "angularVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "linearDamping": 0.05,
+      "angularDamping": 0.05,
+      "collisionGroup": 2,
+      "collisionMask": 65535,
+      "isTrigger": false,
+      "physicsMaterial": "bouncy",
+      "visualMaterial": "blue"
+    }
+  },
+  "constraints": {},
+  "forceFields": {},
+  "lights": {
+    "mainLight": {
+      "name": "Main Light",
+      "transform": {
+        "position": {
+          "x": 5.0,
+          "y": 10.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "w": 0.8660,
+          "x": -0.5,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "lightType": "directional",
+      "color": {
+        "r": 1.0,
+        "g": 0.95,
+        "b": 0.8
+      },
+      "intensity": 1.0,
+      "range": 50.0,
+      "spotAngle": 45.0,
+      "spotExponent": 1.0,
+      "castShadows": true
+    },
+    "fillLight": {
+      "name": "Fill Light",
+      "transform": {
+        "position": {
+          "x": -3.0,
+          "y": 5.0,
+          "z": 3.0
+        },
+        "rotation": {
+          "w": 1.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "lightType": "point",
+      "color": {
+        "r": 0.8,
+        "g": 0.9,
+        "b": 1.0
+      },
+      "intensity": 0.5,
+      "range": 15.0,
+      "spotAngle": 45.0,
+      "spotExponent": 1.0,
+      "castShadows": false
+    }
+  },
+  "cameras": {
+    "mainCamera": {
+      "name": "Main Camera",
+      "transform": {
+        "position": {
+          "x": 0.0,
+          "y": 5.0,
+          "z": 10.0
+        },
+        "rotation": {
+          "w": 1.0,
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "fov": 45.0,
+      "nearPlane": 0.1,
+      "farPlane": 100.0,
+      "aspectRatio": 1.777778,
+      "isOrthographic": false,
+      "orthographicSize": 10.0
+    }
+  }
+}
