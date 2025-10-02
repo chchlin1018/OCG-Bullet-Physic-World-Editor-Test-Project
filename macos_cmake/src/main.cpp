@@ -168,10 +168,10 @@ QString handleCommandLineArguments(MacOSApplication* app)
         QFileInfo fileInfo(filePath);
         
         if (fileInfo.exists() && fileInfo.isReadable()) {
-            qCInfo(app) << "將開啟檔案：" << filePath;
+            qCInfo(app()) << "將開啟檔案：" << filePath;
             return fileInfo.absoluteFilePath();
         } else {
-            qCWarning(app) << "檔案不存在或無法讀取：" << filePath;
+            qCWarning(app()) << "檔案不存在或無法讀取：" << filePath;
         }
     }
     
@@ -195,9 +195,9 @@ int main(int argc, char* argv[])
     // 設定日誌系統
     setupLogging();
     
-    qCInfo(app) << "Physics Scene Editor 正在啟動...";
-    qCInfo(app) << "版本：" << QCoreApplication::applicationVersion();
-    qCInfo(app) << "Qt 版本：" << QT_VERSION_STR;
+    qCInfo(app()) << "Physics Scene Editor 正在啟動...";
+    qCInfo(app()) << "版本：" << QCoreApplication::applicationVersion();
+    qCInfo(app()) << "Qt 版本：" << QT_VERSION_STR;
     
     // 檢查系統需求
     if (!checkSystemRequirements()) {
@@ -224,16 +224,16 @@ int main(int argc, char* argv[])
             });
         }
         
-        qCInfo(app) << "應用程式已啟動";
+        qCInfo(app()) << "應用程式已啟動";
         
         // 進入事件循環
         int result = app.exec();
         
-        qCInfo(app) << "應用程式正在退出，退出代碼：" << result;
+        qCInfo(app()) << "應用程式正在退出，退出代碼：" << result;
         return result;
         
     } catch (const std::exception& e) {
-        qCCritical(app) << "未處理的異常：" << e.what();
+        qCCritical(app()) << "未處理的異常：" << e.what();
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),
@@ -243,7 +243,7 @@ int main(int argc, char* argv[])
         return 1;
         
     } catch (...) {
-        qCCritical(app) << "未知的嚴重錯誤";
+        qCCritical(app()) << "未知的嚴重錯誤";
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),

@@ -6,8 +6,8 @@ project(PhysicsSceneEditorMacOS VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Linux 特定設定（原本是 macOS）
-set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE STRING "Install prefix")
+# macOS 特定設定
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version")
 
 # 設定 Qt 相關選項
 set(CMAKE_AUTOMOC ON)
@@ -78,7 +78,7 @@ add_definitions(
     -DQT_DEPRECATED_WARNINGS
     -DQT_DISABLE_DEPRECATED_BEFORE=0x060000
     -DAPP_VERSION="${PROJECT_VERSION}"
-    -DLINUX_BUILD
+    -DMACOS_BUILD
 )
 
 if(ENABLE_ASSIMP)
@@ -93,28 +93,44 @@ endif()
 set(HEADERS
     include/MacOSMainWindow.h
     include/MacOSApplication.h
+    ../qt_editor/include/SceneTreeWidget.h
+    ../qt_editor/include/PropertyWidget.h
+    ../qt_editor/include/ViewportWidget.h
     ../scene_format/physics_scene_format.h
     ../cross_platform_runner/scene_loader.h
     ../cross_platform_runner/physics_engine.h
     ../cross_platform_runner/renderer.h
 )
 
-# 源碼檔案（只包含存在的檔案）
+# 源碼檔案
 set(SOURCES
     src/main.cpp
     src/MacOSMainWindow.cpp
     src/MacOSApplication.cpp
     ../scene_format/physics_scene_format.cpp
+    ../cross_platform_runner/scene_loader.cpp
+    ../cross_platform_runner/physics_engine.cpp
+    ../cross_platform_runner/renderer.cpp
 )
 
-# 資源檔案（如果存在）
-set(RESOURCE_FILES)
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/icons.qrc")
-    list(APPEND RESOURCE_FILES resources/icons.qrc)
+# 如果有 Qt 編輯器的實現檔案，也包含進來
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../qt_editor/src/SceneTreeWidget.cpp")
+    list(APPEND SOURCES ../qt_editor/src/SceneTreeWidget.cpp)
 endif()
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/shaders.qrc")
-    list(APPEND RESOURCE_FILES resources/shaders.qrc)
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../qt_editor/src/PropertyWidget.cpp")
+    list(APPEND SOURCES ../qt_editor/src/PropertyWidget.cpp)
 endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../qt_editor/src/ViewportWidget.cpp")
+    list(APPEND SOURCES ../qt_editor/src/ViewportWidget.cpp)
+endif()
+
+# 資源檔案
+set(RESOURCE_FILES
+    resources/icons.qrc
+    resources/shaders.qrc
+)
 
 # 建立可執行檔
 add_executable(PhysicsSceneEditorMacOS
@@ -123,9 +139,16 @@ add_executable(PhysicsSceneEditorMacOS
     ${RESOURCE_FILES}
 )
 
-# 設定執行檔屬性
+# 設定 macOS 特定屬性
 set_target_properties(PhysicsSceneEditorMacOS PROPERTIES
-    OUTPUT_NAME "PhysicsSceneEditor"
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
+    MACOSX_BUNDLE_BUNDLE_NAME "Physics Scene Editor"
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION}
+    MACOSX_BUNDLE_IDENTIFIER "com.physicssceneeditor.macos"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.physicssceneeditor.macos"
+    OUTPUT_NAME "Physics Scene Editor"
 )
 
 # 連結函式庫
@@ -156,10 +179,12 @@ if(ENABLE_ASSIMP)
     target_link_libraries(PhysicsSceneEditorMacOS assimp::assimp)
 endif()
 
-# Linux 系統函式庫
+# macOS 系統框架
 target_link_libraries(PhysicsSceneEditorMacOS
-    ${CMAKE_DL_LIBS}
-    pthread
+    "-framework Cocoa"
+    "-framework OpenGL"
+    "-framework IOKit"
+    "-framework CoreVideo"
 )
 
 # 編譯器特定設定
@@ -187,8 +212,32 @@ endif()
 
 # 安裝設定
 install(TARGETS PhysicsSceneEditorMacOS
+    BUNDLE DESTINATION .
     RUNTIME DESTINATION bin
 )
+
+# Qt 部署
+find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS ${Qt6_DIR}/../../../bin)
+if(MACDEPLOYQT_EXECUTABLE)
+    add_custom_command(TARGET PhysicsSceneEditorMacOS POST_BUILD
+        COMMAND ${MACDEPLOYQT_EXECUTABLE} $<TARGET_BUNDLE_DIR:PhysicsSceneEditorMacOS>
+        COMMENT "Deploying Qt libraries"
+    )
+else()
+    message(WARNING "macdeployqt not found, manual Qt deployment may be required")
+endif()
+
+# 建立 DMG（可選）
+if(CREATE_DMG)
+    add_custom_target(dmg
+        COMMAND hdiutil create -volname "Physics Scene Editor" 
+                -srcfolder $<TARGET_BUNDLE_DIR:PhysicsSceneEditorMacOS>
+                -ov -format UDZO 
+                "${CMAKE_BINARY_DIR}/PhysicsSceneEditor-${PROJECT_VERSION}.dmg"
+        DEPENDS PhysicsSceneEditorMacOS
+        COMMENT "Creating DMG installer"
+    )
+endif()
 
 # 測試
 if(BUILD_TESTS)
@@ -198,6 +247,8 @@ if(BUILD_TESTS)
     
     add_executable(PhysicsSceneEditorMacOSTests
         tests/test_main.cpp
+        tests/test_scene_format.cpp
+        tests/test_macos_integration.cpp
         ../scene_format/physics_scene_format.cpp
     )
     
@@ -219,11 +270,11 @@ if(BUILD_TESTS)
 endif()
 
 # 顯示配置摘要
-message(STATUS "=== Physics Scene Editor Linux Configuration ===")
+message(STATUS "=== Physics Scene Editor macOS Configuration ===")
 message(STATUS "Version: ${PROJECT_VERSION}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Qt version: ${Qt6_VERSION}")
-message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 message(STATUS "OpenGL found: ${OPENGL_FOUND}")
 message(STATUS "GLFW found: ${GLFW_FOUND}")
 message(STATUS "GLEW found: ${GLEW_FOUND}")
@@ -231,5 +282,7 @@ message(STATUS "Bullet found: ${BULLET_FOUND}")
 message(STATUS "Eigen3 found: ${EIGEN3_FOUND}")
 message(STATUS "Assimp support: ${ENABLE_ASSIMP}")
 message(STATUS "nlohmann/json found: ${nlohmann_json_FOUND}")
+message(STATUS "macdeployqt found: ${MACDEPLOYQT_EXECUTABLE}")
 message(STATUS "Build tests: ${BUILD_TESTS}")
+message(STATUS "Create DMG: ${CREATE_DMG}")
 message(STATUS "==============================================")
