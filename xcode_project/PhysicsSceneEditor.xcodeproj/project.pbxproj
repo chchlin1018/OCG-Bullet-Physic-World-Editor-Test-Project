@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A2B3C4D5E6F7890 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7891 /* main.cpp */; };
+		1A2B3C4D5E6F7892 /* MainWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7893 /* MainWindow.cpp */; };
+		1A2B3C4D5E6F7894 /* SceneTreeWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7895 /* SceneTreeWidget.cpp */; };
+		1A2B3C4D5E6F7896 /* PropertyWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7897 /* PropertyWidget.cpp */; };
+		1A2B3C4D5E6F7898 /* ViewportWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7899 /* ViewportWidget.cpp */; };
+		1A2B3C4D5E6F789A /* physics_scene_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F789B /* physics_scene_format.cpp */; };
+		1A2B3C4D5E6F789C /* scene_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F789D /* scene_loader.cpp */; };
+		1A2B3C4D5E6F789E /* physics_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F789F /* physics_engine.cpp */; };
+		1A2B3C4D5E6F78A0 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F78A1 /* renderer.cpp */; };
+		2B3C4D5E6F7890A2 /* QtCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F7890A3 /* QtCore.framework */; };
+		2B3C4D5E6F7890A4 /* QtWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F7890A5 /* QtWidgets.framework */; };
+		2B3C4D5E6F7890A6 /* QtOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F7890A7 /* QtOpenGL.framework */; };
+		2B3C4D5E6F7890A8 /* QtOpenGLWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F7890A9 /* QtOpenGLWidgets.framework */; };
+		3C4D5E6F7890ABAA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7890ABAB /* OpenGL.framework */; };
+		3C4D5E6F7890ABAC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7890ABAD /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A1B2C3D4E5F6789 /* PhysicsSceneEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsSceneEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2B3C4D5E6F7891 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7893 /* MainWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainWindow.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7895 /* SceneTreeWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneTreeWidget.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7897 /* PropertyWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PropertyWidget.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7899 /* ViewportWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ViewportWidget.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F789B /* physics_scene_format.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics_scene_format.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F789D /* scene_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_loader.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F789F /* physics_engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics_engine.cpp; sourceTree = "<group>"; };
+		1A2B3C4D5E6F78A1 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B8C /* MainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B8D /* SceneTreeWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneTreeWidget.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B8E /* PropertyWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyWidget.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B8F /* ViewportWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewportWidget.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B90 /* physics_scene_format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_scene_format.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B91 /* scene_loader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_loader.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B92 /* physics_engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_engine.h; sourceTree = "<group>"; };
+		1B2C3D4E5F6A7B93 /* renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
+		2B3C4D5E6F7890A3 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /usr/local/lib/QtCore.framework; sourceTree = "<absolute>"; };
+		2B3C4D5E6F7890A5 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = /usr/local/lib/QtWidgets.framework; sourceTree = "<absolute>"; };
+		2B3C4D5E6F7890A7 /* QtOpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGL.framework; path = /usr/local/lib/QtOpenGL.framework; sourceTree = "<absolute>"; };
+		2B3C4D5E6F7890A9 /* QtOpenGLWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGLWidgets.framework; path = /usr/local/lib/QtOpenGLWidgets.framework; sourceTree = "<absolute>"; };
+		3C4D5E6F7890ABAB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		3C4D5E6F7890ABAD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4D5E6F7890ABCDEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A1B2C3D4E5F6788 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B3C4D5E6F7890A2 /* QtCore.framework in Frameworks */,
+				2B3C4D5E6F7890A4 /* QtWidgets.framework in Frameworks */,
+				2B3C4D5E6F7890A6 /* QtOpenGL.framework in Frameworks */,
+				2B3C4D5E6F7890A8 /* QtOpenGLWidgets.framework in Frameworks */,
+				3C4D5E6F7890ABAA /* OpenGL.framework in Frameworks */,
+				3C4D5E6F7890ABAC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A1B2C3D4E5F6787 = {
+			isa = PBXGroup;
+			children = (
+				0A1B2C3D4E5F678A /* PhysicsSceneEditor */,
+				5E6F7890ABCDEF01 /* External */,
+				6F7890ABCDEF0123 /* Frameworks */,
+				0A1B2C3D4E5F678B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0A1B2C3D4E5F678A /* PhysicsSceneEditor */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B2C3D4E5F678C /* Sources */,
+				0A1B2C3D4E5F678D /* Headers */,
+				0A1B2C3D4E5F678E /* Resources */,
+				4D5E6F7890ABCDEF /* Info.plist */,
+			);
+			path = PhysicsSceneEditor;
+			sourceTree = "<group>";
+		};
+		0A1B2C3D4E5F678B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B2C3D4E5F6789 /* PhysicsSceneEditor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A1B2C3D4E5F678C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F7891 /* main.cpp */,
+				1A2B3C4D5E6F7893 /* MainWindow.cpp */,
+				1A2B3C4D5E6F7895 /* SceneTreeWidget.cpp */,
+				1A2B3C4D5E6F7897 /* PropertyWidget.cpp */,
+				1A2B3C4D5E6F7899 /* ViewportWidget.cpp */,
+				1A2B3C4D5E6F789B /* physics_scene_format.cpp */,
+				1A2B3C4D5E6F789D /* scene_loader.cpp */,
+				1A2B3C4D5E6F789F /* physics_engine.cpp */,
+				1A2B3C4D5E6F78A1 /* renderer.cpp */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0A1B2C3D4E5F678D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				1B2C3D4E5F6A7B8C /* MainWindow.h */,
+				1B2C3D4E5F6A7B8D /* SceneTreeWidget.h */,
+				1B2C3D4E5F6A7B8E /* PropertyWidget.h */,
+				1B2C3D4E5F6A7B8F /* ViewportWidget.h */,
+				1B2C3D4E5F6A7B90 /* physics_scene_format.h */,
+				1B2C3D4E5F6A7B91 /* scene_loader.h */,
+				1B2C3D4E5F6A7B92 /* physics_engine.h */,
+				1B2C3D4E5F6A7B93 /* renderer.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		0A1B2C3D4E5F678E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5E6F7890ABCDEF01 /* External */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		6F7890ABCDEF0123 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B3C4D5E6F7890A3 /* QtCore.framework */,
+				2B3C4D5E6F7890A5 /* QtWidgets.framework */,
+				2B3C4D5E6F7890A7 /* QtOpenGL.framework */,
+				2B3C4D5E6F7890A9 /* QtOpenGLWidgets.framework */,
+				3C4D5E6F7890ABAB /* OpenGL.framework */,
+				3C4D5E6F7890ABAD /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A1B2C3D4E5F6788 /* PhysicsSceneEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A1B2C3D4E5F678F /* Build configuration list for PBXNativeTarget "PhysicsSceneEditor" */;
+			buildPhases = (
+				0A1B2C3D4E5F6785 /* Sources */,
+				0A1B2C3D4E5F6788 /* Frameworks */,
+				0A1B2C3D4E5F6786 /* Resources */,
+				7890ABCDEF012345 /* Run Qt MOC */,
+				890ABCDEF0123456 /* Copy Qt Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhysicsSceneEditor;
+			productName = PhysicsSceneEditor;
+			productReference = 0A1B2C3D4E5F6789 /* PhysicsSceneEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A1B2C3D4E5F6784 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					0A1B2C3D4E5F6788 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 0A1B2C3D4E5F6787 /* Build configuration list for PBXProject "PhysicsSceneEditor" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
+			);
+			mainGroup = 0A1B2C3D4E5F6787;
+			productRefGroup = 0A1B2C3D4E5F678B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A1B2C3D4E5F6788 /* PhysicsSceneEditor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A1B2C3D4E5F6786 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7890ABCDEF012345 /* Run Qt MOC */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Qt MOC";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Qt MOC (Meta-Object Compiler) processing\nif [ -z \"$QT_DIR\" ]; then\n    echo \"Warning: QT_DIR not set, trying to find Qt installation\"\n    QT_DIR=$(brew --prefix qt6 2>/dev/null || echo \"/usr/local/qt6\")\nfi\n\nMOC=\"$QT_DIR/bin/moc\"\nif [ -f \"$MOC\" ]; then\n    echo \"Running Qt MOC...\"\n    # Add MOC processing for header files that need it\n    # This will be expanded based on actual Qt usage\nelse\n    echo \"Warning: Qt MOC not found at $MOC\"\nfi\n";
+		};
+		890ABCDEF0123456 /* Copy Qt Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Qt Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copy Qt frameworks to app bundle\nif [ -z \"$QT_DIR\" ]; then\n    QT_DIR=$(brew --prefix qt6 2>/dev/null || echo \"/usr/local/qt6\")\nfi\n\necho \"Copying Qt frameworks from $QT_DIR\"\n\n# Create Frameworks directory in app bundle\nmkdir -p \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/Frameworks\"\n\n# Copy required Qt frameworks\nfor framework in QtCore QtWidgets QtGui QtOpenGL QtOpenGLWidgets; do\n    if [ -d \"$QT_DIR/lib/$framework.framework\" ]; then\n        echo \"Copying $framework.framework\"\n        cp -R \"$QT_DIR/lib/$framework.framework\" \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n    fi\ndone\n\n# Run macdeployqt if available\nif [ -f \"$QT_DIR/bin/macdeployqt\" ]; then\n    echo \"Running macdeployqt\"\n    \"$QT_DIR/bin/macdeployqt\" \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A1B2C3D4E5F6785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F7890 /* main.cpp in Sources */,
+				1A2B3C4D5E6F7892 /* MainWindow.cpp in Sources */,
+				1A2B3C4D5E6F7894 /* SceneTreeWidget.cpp in Sources */,
+				1A2B3C4D5E6F7896 /* PropertyWidget.cpp in Sources */,
+				1A2B3C4D5E6F7898 /* ViewportWidget.cpp in Sources */,
+				1A2B3C4D5E6F789A /* physics_scene_format.cpp in Sources */,
+				1A2B3C4D5E6F789C /* scene_loader.cpp in Sources */,
+				1A2B3C4D5E6F789E /* physics_engine.cpp in Sources */,
+				1A2B3C4D5E6F78A0 /* renderer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0A1B2C3D4E5F678D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_UNUSED_FUNCTION = YES;
+				CLANG_WARN_UNUSED_VARIABLE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0A1B2C3D4E5F678E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN_UNUSED_FUNCTION = YES;
+				CLANG_WARN_UNUSED_VARIABLE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0A1B2C3D4E5F6790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PhysicsSceneEditor/PhysicsSceneEditor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+					"$(QT_DIR)/include",
+					"$(QT_DIR)/include/QtCore",
+					"$(QT_DIR)/include/QtWidgets",
+					"$(QT_DIR)/include/QtGui",
+					"$(QT_DIR)/include/QtOpenGL",
+					"$(QT_DIR)/include/QtOpenGLWidgets",
+					/usr/local/include/eigen3,
+					/usr/local/include/bullet,
+				);
+				INFOPLIST_FILE = PhysicsSceneEditor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Physics Scene Editor";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DENABLE_OGC",
+					"-DENABLE_BULLET",
+				);
+				OTHER_LDFLAGS = (
+					"-lBulletDynamics",
+					"-lBulletCollision",
+					"-lLinearMath",
+					"-framework",
+					OpenGL,
+					"-framework",
+					Cocoa,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.physicssceneeditor.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				QT_DIR = /usr/local/qt6;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		0A1B2C3D4E5F6791 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PhysicsSceneEditor/PhysicsSceneEditor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+					"$(QT_DIR)/include",
+					"$(QT_DIR)/include/QtCore",
+					"$(QT_DIR)/include/QtWidgets",
+					"$(QT_DIR)/include/QtGui",
+					"$(QT_DIR)/include/QtOpenGL",
+					"$(QT_DIR)/include/QtOpenGLWidgets",
+					/usr/local/include/eigen3,
+					/usr/local/include/bullet,
+				);
+				INFOPLIST_FILE = PhysicsSceneEditor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Physics Scene Editor";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+					"$(QT_DIR)/lib",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DENABLE_OGC",
+					"-DENABLE_BULLET",
+				);
+				OTHER_LDFLAGS = (
+					"-lBulletDynamics",
+					"-lBulletCollision",
+					"-lLinearMath",
+					"-framework",
+					OpenGL,
+					"-framework",
+					Cocoa,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.physicssceneeditor.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				QT_DIR = /usr/local/qt6;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A1B2C3D4E5F6787 /* Build configuration list for PBXProject "PhysicsSceneEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A1B2C3D4E5F678D /* Debug */,
+				0A1B2C3D4E5F678E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A1B2C3D4E5F678F /* Build configuration list for PBXNativeTarget "PhysicsSceneEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A1B2C3D4E5F6790 /* Debug */,
+				0A1B2C3D4E5F6791 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A1B2C3D4E5F6784 /* Project object */;
+}
