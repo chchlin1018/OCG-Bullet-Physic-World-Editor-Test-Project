@@ -102,10 +102,10 @@ void setupApplicationStyle(MacOSApplication* app)
     bool isDarkMode = palette.color(QPalette::Window).lightness() < 128;
     
     if (isDarkMode) {
-        qCInfo(app) << "檢測到深色模式";
+        qCInfo(::app) << "檢測到深色模式";
         // 可以在這裡設定深色模式特定的調色板
     } else {
-        qCInfo(app) << "使用淺色模式";
+        qCInfo(::app) << "使用淺色模式";
     }
     
     app->setPalette(palette);
@@ -204,9 +204,9 @@ int main(int argc, char* argv[])
     // 設定日誌系統
     setupLogging();
     
-    qCInfo(app) << "Physics Scene Editor 正在啟動...";
-    qCInfo(app) << "版本：" << QCoreApplication::applicationVersion();
-    qCInfo(app) << "Qt 版本：" << QT_VERSION_STR;
+    qCInfo(::app) << "Physics Scene Editor 正在啟動...";
+    qCInfo(::app) << "版本：" << QCoreApplication::applicationVersion();
+    qCInfo(::app) << "Qt 版本：" << QT_VERSION_STR;
     
     // 檢查系統需求
     if (!checkSystemRequirements()) {
@@ -233,16 +233,16 @@ int main(int argc, char* argv[])
             });
         }
         
-        qCInfo(app) << "應用程式已啟動";
+        qCInfo(::app) << "應用程式已啟動";
         
         // 進入事件循環
         int result = app.exec();
         
-        qCInfo(app) << "應用程式正在退出，退出代碼：" << result;
+        qCInfo(::app) << "應用程式正在退出，退出代碼：" << result;
         return result;
         
     } catch (const std::exception& e) {
-        qCCritical(app) << "未處理的異常：" << e.what();
+        qCCritical(::app) << "未處理的異常：" << e.what();
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),
@@ -252,7 +252,7 @@ int main(int argc, char* argv[])
         return 1;
         
     } catch (...) {
-        qCCritical(app) << "未知的嚴重錯誤";
+        qCCritical(::app) << "未知的嚴重錯誤";
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),
