@@ -22,6 +22,13 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QStandardPaths>
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+#include <QMatrix4x4>
+#include <QVector3D>
+#include <QMouseEvent>
+#include <QWheelEvent>
+#include <QSurfaceFormat>
 
 // 暫時的簡化版本 Widget 類別
 class SceneTreeWidget : public QWidget
@@ -48,18 +55,205 @@ public:
     }
 };
 
-class ViewportWidget : public QWidget
+class ViewportWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 public:
-    explicit ViewportWidget(QWidget* parent = nullptr) : QWidget(parent) {
+    explicit ViewportWidget(QWidget* parent = nullptr) : QOpenGLWidget(parent) {
         setMinimumSize(640, 480);
-        auto layout = new QVBoxLayout(this);
-        auto label = new QLabel("3D 視口\n\n這裡將顯示物理場景的 3D 視覺化", this);
-        label->setAlignment(Qt::AlignCenter);
-        label->setStyleSheet("QLabel { background-color: #2b2b2b; color: white; font-size: 14px; }");
-        layout->addWidget(label);
+        setFocusPolicy(Qt::StrongFocus);
+        
+        // 設定 OpenGL 格式（使用相容性模式以支援立即模式渲染）
+        QSurfaceFormat format;
+        format.setDepthBufferSize(24);
+        format.setStencilBufferSize(8);
+        format.setVersion(2, 1);  // 使用 OpenGL 2.1 相容性模式
+        format.setProfile(QSurfaceFormat::CompatibilityProfile);
+        format.setSamples(4); // 4x MSAA
+        setFormat(format);
+        
+        // 初始化相機參數
+        m_cameraPos = QVector3D(0.0f, 5.0f, 10.0f);
+        m_cameraTarget = QVector3D(0.0f, 0.0f, 0.0f);
+        m_cameraUp = QVector3D(0.0f, 1.0f, 0.0f);
+        
+        // 啟動渲染計時器
+        m_renderTimer = new QTimer(this);
+        connect(m_renderTimer, &QTimer::timeout, this, QOverload<>::of(&ViewportWidget::update));
+        m_renderTimer->start(16); // ~60 FPS
     }
+
+protected:
+    void initializeGL() override {
+        initializeOpenGLFunctions();
+        
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_MULTISAMPLE);
+        
+        // 創建基本場景
+        createBasicScene();
+    }
+    
+    void resizeGL(int w, int h) override {
+        glViewport(0, 0, w, h);
+        m_projectionMatrix.setToIdentity();
+        m_projectionMatrix.perspective(45.0f, float(w) / float(h), 0.1f, 100.0f);
+    }
+    
+    void paintGL() override {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        // 設定視圖矩陣
+        m_viewMatrix.setToIdentity();
+        m_viewMatrix.lookAt(m_cameraPos, m_cameraTarget, m_cameraUp);
+        
+        // 渲染基本場景
+        renderBasicScene();
+    }
+    
+    void mousePressEvent(QMouseEvent* event) override {
+        m_lastMousePos = event->pos();
+    }
+    
+    void mouseMoveEvent(QMouseEvent* event) override {
+        if (event->buttons() & Qt::LeftButton) {
+            // 簡單的相機旋轉
+            QPoint delta = event->pos() - m_lastMousePos;
+            
+            // 水平旋轉
+            float angleY = delta.x() * 0.01f;
+            QMatrix4x4 rotY;
+            rotY.rotate(angleY * 180.0f / 3.14159f, 0, 1, 0);
+            m_cameraPos = rotY * m_cameraPos;
+            
+            m_lastMousePos = event->pos();
+            update();
+        }
+    }
+    
+    void wheelEvent(QWheelEvent* event) override {
+        // 縮放
+        float delta = event->angleDelta().y() / 120.0f;
+        float zoomFactor = 1.0f + delta * 0.1f;
+        m_cameraPos *= zoomFactor;
+        update();
+    }
+
+private:
+    void createBasicScene() {
+        // 這裡將創建基本的幾何體
+        // 暫時使用固定頂點數據
+    }
+    
+    void renderBasicScene() {
+        // 渲染地面網格
+        renderGrid();
+        
+        // 渲染一些基本物件
+        renderBasicObjects();
+    }
+    
+    void renderGrid() {
+        // 使用相容性 OpenGL 渲染網格
+        // 設定矩陣模式
+        glMatrixMode(GL_PROJECTION);
+        glLoadMatrixf(m_projectionMatrix.constData());
+        
+        glMatrixMode(GL_MODELVIEW);
+        glLoadMatrixf(m_viewMatrix.constData());
+        
+        // 渲染網格線
+        glColor3f(0.5f, 0.5f, 0.5f);
+        glBegin(GL_LINES);
+        
+        for (int i = -10; i <= 10; ++i) {
+            // 水平線
+            glVertex3f(-10.0f, 0.0f, float(i));
+            glVertex3f(10.0f, 0.0f, float(i));
+            
+            // 垂直線
+            glVertex3f(float(i), 0.0f, -10.0f);
+            glVertex3f(float(i), 0.0f, 10.0f);
+        }
+        glEnd();
+    }
+    
+    void renderBasicObjects() {
+        // 渲染一個簡單的立方體
+        glPushMatrix();
+        glTranslatef(0.0f, 1.0f, 0.0f);
+        glColor3f(1.0f, 0.5f, 0.2f);
+        
+        // 簡單的立方體（使用立即模式）
+        glBegin(GL_QUADS);
+        // 前面
+        glVertex3f(-1.0f, -1.0f,  1.0f);
+        glVertex3f( 1.0f, -1.0f,  1.0f);
+        glVertex3f( 1.0f,  1.0f,  1.0f);
+        glVertex3f(-1.0f,  1.0f,  1.0f);
+        
+        // 後面
+        glVertex3f(-1.0f, -1.0f, -1.0f);
+        glVertex3f(-1.0f,  1.0f, -1.0f);
+        glVertex3f( 1.0f,  1.0f, -1.0f);
+        glVertex3f( 1.0f, -1.0f, -1.0f);
+        
+        // 頂面
+        glVertex3f(-1.0f,  1.0f, -1.0f);
+        glVertex3f(-1.0f,  1.0f,  1.0f);
+        glVertex3f( 1.0f,  1.0f,  1.0f);
+        glVertex3f( 1.0f,  1.0f, -1.0f);
+        
+        // 底面
+        glVertex3f(-1.0f, -1.0f, -1.0f);
+        glVertex3f( 1.0f, -1.0f, -1.0f);
+        glVertex3f( 1.0f, -1.0f,  1.0f);
+        glVertex3f(-1.0f, -1.0f,  1.0f);
+        
+        // 右面
+        glVertex3f( 1.0f, -1.0f, -1.0f);
+        glVertex3f( 1.0f,  1.0f, -1.0f);
+        glVertex3f( 1.0f,  1.0f,  1.0f);
+        glVertex3f( 1.0f, -1.0f,  1.0f);
+        
+        // 左面
+        glVertex3f(-1.0f, -1.0f, -1.0f);
+        glVertex3f(-1.0f, -1.0f,  1.0f);
+        glVertex3f(-1.0f,  1.0f,  1.0f);
+        glVertex3f(-1.0f,  1.0f, -1.0f);
+        glEnd();
+        
+        glPopMatrix();
+        
+        // 渲染一個球體（在另一個位置）
+        glPushMatrix();
+        glTranslatef(3.0f, 1.0f, 0.0f);
+        glColor3f(0.2f, 0.8f, 0.2f);
+        
+        // 簡化的球體（暫時用縮小的立方體代替）
+        glScalef(0.8f, 0.8f, 0.8f);
+        
+        // 渲染簡化的立方體
+        glBegin(GL_QUADS);
+        // 前面
+        glVertex3f(-1.0f, -1.0f,  1.0f);
+        glVertex3f( 1.0f, -1.0f,  1.0f);
+        glVertex3f( 1.0f,  1.0f,  1.0f);
+        glVertex3f(-1.0f,  1.0f,  1.0f);
+        // 其他面省略以簡化
+        glEnd();
+        glPopMatrix();
+    }
+
+private:
+    QMatrix4x4 m_projectionMatrix;
+    QMatrix4x4 m_viewMatrix;
+    QVector3D m_cameraPos;
+    QVector3D m_cameraTarget;
+    QVector3D m_cameraUp;
+    QPoint m_lastMousePos;
+    QTimer* m_renderTimer;
 };
 
 MacOSMainWindow::MacOSMainWindow(QWidget* parent)
