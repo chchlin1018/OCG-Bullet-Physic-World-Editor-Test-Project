@@ -80,8 +80,8 @@ bool checkSystemRequirements()
     
     // 檢查 OpenGL 支援
     // 注意：這裡只是基本檢查，實際的 OpenGL 檢查會在視口初始化時進行
-    qCInfo(app) << "系統版本：" << current.name();
-    qCInfo(app) << "滿足最低系統需求";
+    qCInfo(::app) << "系統版本：" << current.name();
+    qCInfo(::app) << "滿足最低系統需求";
     
     return true;
 }
@@ -150,23 +150,23 @@ QString handleCommandLineArguments(MacOSApplication* app)
     // 處理選項
     if (parser.isSet(debugOption)) {
         QLoggingCategory::setFilterRules("*.debug=true");
-        qCInfo(app) << "除錯模式已啟用";
+        qCInfo(::app) << "除錯模式已啟用";
     }
     
     if (parser.isSet(verboseOption)) {
         QLoggingCategory::setFilterRules("*.debug=true;*.info=true");
-        qCInfo(app) << "詳細輸出已啟用";
+        qCInfo(::app) << "詳細輸出已啟用";
     }
     
     if (parser.isSet(noGpuOption)) {
-        qCInfo(app) << "GPU 加速已停用";
+        qCInfo(::app) << "GPU 加速已停用";
         // 設定環境變數或全域標誌
         qputenv("DISABLE_GPU", "1");
     }
     
     QString engine = parser.value(engineOption);
     if (!engine.isEmpty()) {
-        qCInfo(app) << "指定物理引擎：" << engine;
+        qCInfo(::app) << "指定物理引擎：" << engine;
         qputenv("PHYSICS_ENGINE", engine.toUtf8());
     }
     
@@ -177,10 +177,10 @@ QString handleCommandLineArguments(MacOSApplication* app)
         QFileInfo fileInfo(filePath);
         
         if (fileInfo.exists() && fileInfo.isReadable()) {
-            qCInfo(app()) << "將開啟檔案：" << filePath;
+            qCInfo(::app) << "將開啟檔案：" << filePath;
             return fileInfo.absoluteFilePath();
         } else {
-            qCWarning(app()) << "檔案不存在或無法讀取：" << filePath;
+            qCWarning(::app) << "檔案不存在或無法讀取：" << filePath;
         }
     }
     
