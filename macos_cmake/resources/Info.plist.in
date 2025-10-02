@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>Physics Scene Editor</string>
+    <key>CFBundleExecutable</key>
+    <string>PhysicsSceneEditor</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.physicssceneeditor.app</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Physics Scene Editor</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <true/>
+    <key>NSRequiresAquaSystemAppearance</key>
+    <false/>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>pscene</string>
+            </array>
+            <key>CFBundleTypeIconFile</key>
+            <string>DocumentIcon</string>
+            <key>CFBundleTypeName</key>
+            <string>Physics Scene Document</string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>LSHandlerRank</key>
+            <string>Owner</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>com.physicssceneeditor.pscene</string>
+            </array>
+        </dict>
+    </array>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+                <string>public.content</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>Physics Scene Document</string>
+            <key>UTTypeIdentifier</key>
+            <string>com.physicssceneeditor.pscene</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>pscene</string>
+                </array>
+                <key>public.mime-type</key>
+                <array>
+                    <string>application/x-physics-scene</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+    <key>NSCameraUsageDescription</key>
+    <string>This app does not use the camera.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app does not use the microphone.</string>
+    <key>NSLocationUsageDescription</key>
+    <string>This app does not use location services.</string>
+</dict>
+</plist>
