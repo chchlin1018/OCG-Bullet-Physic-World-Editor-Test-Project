@@ -83,6 +83,7 @@ MacOSMainWindow::MacOSMainWindow(QWidget* parent)
     , m_statusUpdateTimer(nullptr)
     , m_settings(nullptr)
 {
+    setObjectName("mainWindow");  // 設定主視窗 objectName
     setupUI();
     createActions();
     createCentralWidget();
@@ -121,6 +122,7 @@ void MacOSMainWindow::setupUI()
 void MacOSMainWindow::createCentralWidget()
 {
     m_viewportWidget = new ViewportWidget(this);
+    m_viewportWidget->setObjectName("viewportWidget");  // 設定 objectName
     setCentralWidget(m_viewportWidget);
 }
 
@@ -128,6 +130,7 @@ void MacOSMainWindow::createDockWidgets()
 {
     // 場景樹狀檢視停靠視窗
     m_sceneTreeDock = new QDockWidget("場景樹狀檢視", this);
+    m_sceneTreeDock->setObjectName("sceneTreeDock");  // 設定 objectName
     m_sceneTreeWidget = new SceneTreeWidget(this);
     m_sceneTreeDock->setWidget(m_sceneTreeWidget);
     m_sceneTreeDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -135,6 +138,7 @@ void MacOSMainWindow::createDockWidgets()
     
     // 屬性面板停靠視窗
     m_propertyDock = new QDockWidget("屬性", this);
+    m_propertyDock->setObjectName("propertyDock");  // 設定 objectName
     m_propertyWidget = new PropertyWidget(this);
     m_propertyDock->setWidget(m_propertyWidget);
     m_propertyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -142,6 +146,7 @@ void MacOSMainWindow::createDockWidgets()
     
     // 輸出面板停靠視窗
     m_outputDock = new QDockWidget("輸出", this);
+    m_outputDock->setObjectName("outputDock");  // 設定 objectName
     m_outputWidget = new QTextEdit(this);
     m_outputWidget->setReadOnly(true);
     m_outputWidget->setMaximumHeight(150);
@@ -170,20 +175,26 @@ void MacOSMainWindow::createToolBars()
 
 void MacOSMainWindow::createStatusBar()
 {
+    statusBar()->setObjectName("statusBar");  // 設定狀態列 objectName
+    
     m_statusLabel = new QLabel("就緒", this);
+    m_statusLabel->setObjectName("statusLabel");
     statusBar()->addWidget(m_statusLabel);
     
     statusBar()->addPermanentWidget(new QLabel(" | ", this));
     
     m_objectCountLabel = new QLabel("物件: 0", this);
+    m_objectCountLabel->setObjectName("objectCountLabel");
     statusBar()->addPermanentWidget(m_objectCountLabel);
     
     statusBar()->addPermanentWidget(new QLabel(" | ", this));
     
     m_simulationTimeLabel = new QLabel("時間: 0.00s", this);
+    m_simulationTimeLabel->setObjectName("simulationTimeLabel");
     statusBar()->addPermanentWidget(m_simulationTimeLabel);
     
     m_progressBar = new QProgressBar(this);
+    m_progressBar->setObjectName("progressBar");
     m_progressBar->setVisible(false);
     statusBar()->addPermanentWidget(m_progressBar);
 }
