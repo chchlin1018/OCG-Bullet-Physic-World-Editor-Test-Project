@@ -21,7 +21,6 @@ Q_LOGGING_CATEGORY(renderer, "renderer")
 void setupApplicationInfo()
 {
     QCoreApplication::setApplicationName("Physics Scene Editor");
-    QCoreApplication::setApplicationDisplayName("Physics Scene Editor");
     QCoreApplication::setApplicationVersion("1.0.0");
     QCoreApplication::setOrganizationName("Physics Scene Editor Team");
     QCoreApplication::setOrganizationDomain("physicssceneeditor.com");
