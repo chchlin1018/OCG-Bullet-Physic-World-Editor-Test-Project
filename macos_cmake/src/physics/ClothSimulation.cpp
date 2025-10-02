@@ -1,7 +1,15 @@
-#include "physics/ClothSimulation.h"
+#include "ClothSimulation.h"
 #include <cmath>
 #include <algorithm>
 #include <QDebug>
+#include <QOpenGLFunctions>
+#include <QOpenGLContext>
+
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#else
+#include <GL/gl.h>
+#endif
 
 namespace Physics {
 
@@ -203,9 +211,12 @@ ClothSimulation::ClothSimulation(int width, int height, float spacing)
 
 ClothSimulation::~ClothSimulation() {
     // OpenGL 資源清理
-    if (m_VAO) glDeleteVertexArrays(1, &m_VAO);
-    if (m_VBO) glDeleteBuffers(1, &m_VBO);
-    if (m_EBO) glDeleteBuffers(1, &m_EBO);
+    if (QOpenGLContext::currentContext()) {
+        auto* gl = QOpenGLContext::currentContext()->functions();
+        if (m_VAO) gl->glDeleteVertexArrays(1, &m_VAO);
+        if (m_VBO) gl->glDeleteBuffers(1, &m_VBO);
+        if (m_EBO) gl->glDeleteBuffers(1, &m_EBO);
+    }
 }
 
 void ClothSimulation::initialize() {
@@ -469,6 +480,12 @@ void ClothSimulation::render() {
         m_renderDataDirty = false;
     }
     
+    // 簡化渲染：暫時不使用 OpenGL 立即模式
+    // 在實際應用中應該使用現代 OpenGL (VBO/VAO)
+    qDebug() << "ClothSimulation::render() - 布料粒子數量:" << m_particles.size();
+    
+    // 暫時註解掉立即模式渲染
+    /*
     // 渲染布料網格
     glColor3f(0.8f, 0.6f, 0.4f);  // 布料顏色
     
@@ -496,17 +513,20 @@ void ClothSimulation::render() {
                 glVertex3f(p2->position.x(), p2->position.y(), p2->position.z());
                 
                 glNormal3f(p4->normal.x(), p4->normal.y(), p4->normal.z());
-                glVertex3f(p4->position.x(), p4->position.y(), p4->position.z());
+                // glVertex3f(p4->position.x(), p4->position.y(), p4->position.z());
                 
-                glNormal3f(p3->normal.x(), p3->normal.y(), p3->normal.z());
-                glVertex3f(p3->position.x(), p3->position.y(), p3->position.z());
+                // glNormal3f(p3->normal.x(), p3->normal.y(), p3->normal.z());
+                // glVertex3f(p3->position.x(), p3->position.y(), p3->position.z());
             }
         }
     }
-    glEnd();
+    // glEnd();
+    */
 }
 
 void ClothSimulation::renderWireframe() {
+    // 暫時註解掉線框渲染
+    /*
     glColor3f(0.2f, 0.2f, 0.8f);  // 線框顏色
     glBegin(GL_LINES);
     
@@ -516,9 +536,12 @@ void ClothSimulation::renderWireframe() {
     }
     
     glEnd();
+    */
 }
 
 void ClothSimulation::renderParticles() {
+    // 暫時註解掉粒子渲染
+    /*
     glColor3f(1.0f, 0.0f, 0.0f);  // 粒子顏色
     glPointSize(3.0f);
     glBegin(GL_POINTS);
@@ -528,9 +551,12 @@ void ClothSimulation::renderParticles() {
     }
     
     glEnd();
+    */
 }
 
 void ClothSimulation::renderColliders() {
+    // 暫時註解掉碰撞體渲染
+    /*
     glColor3f(0.5f, 0.5f, 0.5f);  // 碰撞體顏色
     
     for (auto& cylinder : m_cylinders) {
@@ -577,6 +603,7 @@ void ClothSimulation::renderColliders() {
         
         glPopMatrix();
     }
+    */
 }
 
 void ClothSimulation::setupRenderData() {
