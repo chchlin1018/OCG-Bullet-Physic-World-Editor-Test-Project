@@ -104,6 +104,7 @@ public:
     
     // 模擬控制
     void initialize();
+    void initialize(int width, int height, float spacing);  // 帶參數的初始化
     void update(float deltaTime);
     void reset();
     void pause() { m_paused = true; }
@@ -118,6 +119,7 @@ public:
     
     // OGC 設定
     void enableOGC(bool enable) { m_useOGC = enable; }
+    void setUseOGC(bool enable) { m_useOGC = enable; }  // 別名方法
     void setOGCContactRadius(float radius);
     
     // 渲染
@@ -131,6 +133,13 @@ public:
     int getParticleCount() const { return m_particles.size(); }
     int getConstraintCount() const { return m_constraints.size(); }
     float getSimulationTime() const { return m_simulationTime; }
+    
+    // OGC 狀態查詢
+    bool getUseOGC() const { return m_useOGC; }
+    float getOGCContactRadius() const;
+    
+    // 時間步長設定
+    void setTimeStep(float timeStep) { m_timeStep = timeStep; }
     
 private:
     // 布料網格

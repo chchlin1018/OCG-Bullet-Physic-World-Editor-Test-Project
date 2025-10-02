@@ -249,6 +249,16 @@ void ClothSimulation::initialize() {
                 .arg(m_constraints.size());
 }
 
+void ClothSimulation::initialize(int width, int height, float spacing) {
+    // 更新布料參數
+    m_width = width;
+    m_height = height;
+    m_spacing = spacing;
+    
+    // 調用標準初始化
+    initialize();
+}
+
 void ClothSimulation::update(float deltaTime) {
     if (m_paused) return;
     
@@ -292,6 +302,10 @@ void ClothSimulation::setOGCContactRadius(float radius) {
     if (m_ogcModel) {
         m_ogcModel->setContactRadius(radius);
     }
+}
+
+float ClothSimulation::getOGCContactRadius() const {
+    return m_ogcModel ? m_ogcModel->getContactRadius() : 0.05f;
 }
 
 void ClothSimulation::createClothMesh() {
