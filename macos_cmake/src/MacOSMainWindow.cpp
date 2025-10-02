@@ -1,5 +1,6 @@
 #include "MacOSMainWindow.h"
 #include "MacOSApplication.h"
+#include "physics/TestSceneManager.h"
 
 #include <QApplication>
 #include <QMenuBar>
@@ -77,6 +78,9 @@ public:
         m_cameraTarget = QVector3D(0.0f, 0.0f, 0.0f);
         m_cameraUp = QVector3D(0.0f, 1.0f, 0.0f);
         
+        // 初始化測試場景管理器
+        m_testSceneManager = new Physics::TestSceneManager(this);
+        
         // 啟動渲染計時器
         m_renderTimer = new QTimer(this);
         connect(m_renderTimer, &QTimer::timeout, this, QOverload<>::of(&ViewportWidget::update));
@@ -110,6 +114,11 @@ protected:
         
         // 渲染基本場景
         renderBasicScene();
+        
+        // 渲染布料模擬
+        if (m_testSceneManager) {
+            m_testSceneManager->render();
+        }
     }
     
     void mousePressEvent(QMouseEvent* event) override {
@@ -254,6 +263,7 @@ private:
     QVector3D m_cameraUp;
     QPoint m_lastMousePos;
     QTimer* m_renderTimer;
+    Physics::TestSceneManager* m_testSceneManager;
 };
 
 MacOSMainWindow::MacOSMainWindow(QWidget* parent)
@@ -293,6 +303,9 @@ MacOSMainWindow::MacOSMainWindow(QWidget* parent)
     m_statusUpdateTimer = new QTimer(this);
     connect(m_statusUpdateTimer, &QTimer::timeout, this, &MacOSMainWindow::updateStatusBar);
     m_statusUpdateTimer->start(1000); // 每秒更新一次
+    
+    // 初始化布料掉落測試場景
+    initializeClothDropScene();
 }
 
 MacOSMainWindow::~MacOSMainWindow()
@@ -717,6 +730,26 @@ void MacOSMainWindow::toggleFullScreen()
     } else {
         showFullScreen();
     }
+}
+
+void MacOSMainWindow::initializeClothDropScene()
+{
+    // 輸出初始化訊息
+    m_outputWidget->append("=== 布料掉落測試場景 ===");
+    m_outputWidget->append("正在初始化 OGC 接觸模型...");
+    m_outputWidget->append("布料尺寸: 20x20 粒子");
+    m_outputWidget->append("圓柱體半徑: 1.5 單位");
+    m_outputWidget->append("OGC 接觸半徑: 0.05 單位");
+    m_outputWidget->append("重力: -9.81 m/s²");
+    m_outputWidget->append("自動開始模擬...");
+    
+    // 自動開始模擬
+    QTimer::singleShot(1000, this, [this]() {
+        m_simulationRunning = true;
+        onSimulationStateChanged(true);
+        m_outputWidget->append("布料掉落模擬已開始！");
+        m_outputWidget->append("使用滑鼠拖拽旋轉視角，滾輪縮放");
+    });
 }
 
 MacOSMainWindow* macOSMainWindow()

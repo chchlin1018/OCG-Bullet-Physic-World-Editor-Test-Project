@@ -93,6 +93,8 @@ endif()
 set(HEADERS
     include/MacOSMainWindow.h
     include/MacOSApplication.h
+    include/physics/ClothSimulation.h
+    include/physics/TestSceneManager.h
     ../scene_format/physics_scene_format.h
     ../cross_platform_runner/scene_loader.h
     ../cross_platform_runner/physics_engine.h
@@ -104,6 +106,8 @@ set(SOURCES
     src/main.cpp
     src/MacOSMainWindow.cpp
     src/MacOSApplication.cpp
+    src/physics/ClothSimulation.cpp
+    src/physics/TestSceneManager.cpp
     ../scene_format/physics_scene_format.cpp
 )
 

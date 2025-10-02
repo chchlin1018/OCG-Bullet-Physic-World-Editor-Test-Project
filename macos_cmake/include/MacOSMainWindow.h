@@ -202,6 +202,11 @@ private:
      * @brief 設定 macOS 特定的視窗屬性
      */
     void setupMacOSWindowProperties();
+    
+    /**
+     * @brief 初始化布料掉落測試場景
+     */
+    void initializeClothDropScene();
 
 private:
     // 中央視窗
