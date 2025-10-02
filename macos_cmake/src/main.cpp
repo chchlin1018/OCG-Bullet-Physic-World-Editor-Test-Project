@@ -9,6 +9,9 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QScreen>
+#include <QOperatingSystemVersion>
+#include <QPalette>
+#include <QTimer>
 
 // 日誌類別
 Q_LOGGING_CATEGORY(app, "app")
@@ -26,8 +29,11 @@ void setupApplicationInfo()
     QCoreApplication::setOrganizationDomain("physicssceneeditor.com");
     
     // 設定應用程式屬性
+    // 注意：Qt6 中 AA_EnableHighDpiScaling 和 AA_UseHighDpiPixmaps 已預設啟用
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
     QCoreApplication::setAttribute(Qt::AA_DontShowIconsInMenus, false);
 }
 
@@ -57,15 +63,19 @@ bool checkSystemRequirements()
 {
     // 檢查 macOS 版本
     QOperatingSystemVersion current = QOperatingSystemVersion::current();
-    QOperatingSystemVersion minimum = QOperatingSystemVersion::MacOSCatalina;
     
-    if (current < minimum) {
-        QMessageBox::critical(nullptr, 
-                            QObject::tr("系統需求不符"),
-                            QObject::tr("此應用程式需要 macOS 10.15 (Catalina) 或更高版本。\n"
-                                      "您的系統版本：%1")
-                            .arg(current.name()));
-        return false;
+    // 檢查是否為 macOS 且版本 >= 10.15
+    if (current.type() == QOperatingSystemVersion::MacOS) {
+        if (current.majorVersion() < 10 || 
+            (current.majorVersion() == 10 && current.minorVersion() < 15)) {
+            QMessageBox::critical(nullptr, 
+                                QObject::tr("系統需求不符"),
+                                QObject::tr("此應用程式需要 macOS 10.15 (Catalina) 或更高版本。\n"
+                                          "您的系統版本：%1.%2")
+                                .arg(current.majorVersion())
+                                .arg(current.minorVersion()));
+            return false;
+        }
     }
     
     // 檢查 OpenGL 支援
@@ -194,9 +204,9 @@ int main(int argc, char* argv[])
     // 設定日誌系統
     setupLogging();
     
-    qCInfo(app()) << "Physics Scene Editor 正在啟動...";
-    qCInfo(app()) << "版本：" << QCoreApplication::applicationVersion();
-    qCInfo(app()) << "Qt 版本：" << QT_VERSION_STR;
+    qCInfo(app) << "Physics Scene Editor 正在啟動...";
+    qCInfo(app) << "版本：" << QCoreApplication::applicationVersion();
+    qCInfo(app) << "Qt 版本：" << QT_VERSION_STR;
     
     // 檢查系統需求
     if (!checkSystemRequirements()) {
@@ -223,16 +233,16 @@ int main(int argc, char* argv[])
             });
         }
         
-        qCInfo(app()) << "應用程式已啟動";
+        qCInfo(app) << "應用程式已啟動";
         
         // 進入事件循環
         int result = app.exec();
         
-        qCInfo(app()) << "應用程式正在退出，退出代碼：" << result;
+        qCInfo(app) << "應用程式正在退出，退出代碼：" << result;
         return result;
         
     } catch (const std::exception& e) {
-        qCCritical(app()) << "未處理的異常：" << e.what();
+        qCCritical(app) << "未處理的異常：" << e.what();
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),
@@ -242,7 +252,7 @@ int main(int argc, char* argv[])
         return 1;
         
     } catch (...) {
-        qCCritical(app()) << "未知的嚴重錯誤";
+        qCCritical(app) << "未知的嚴重錯誤";
         
         QMessageBox::critical(nullptr,
                             QObject::tr("嚴重錯誤"),
